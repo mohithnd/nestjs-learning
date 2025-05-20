@@ -1,0 +1,11 @@
+node_modules
+
+bun.lock
+
+*.sqlite
+
+.env.dev
+.env.prod
+.env.test
+
+dist
