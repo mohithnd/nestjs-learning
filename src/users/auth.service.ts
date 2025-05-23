@@ -43,4 +43,11 @@ export class AuthService {
     }
     return user;
   }
+
+  async hashPassword(password: string) {
+    const salt = randomBytes(8).toString('hex');
+    const hash = (await scrypt(password, salt, 32)) as Buffer;
+    const result = salt + '.' + hash.toString('hex');
+    return result;
+  }
 }

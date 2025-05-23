@@ -88,6 +88,10 @@ export class UsersController {
     @Param('id', ParseIntPipe) id: number,
     @Body() body: UpdateUserDto,
   ) {
+    if (body.password) {
+      const result = await this.authService.hashPassword(body.password);
+      body.password = result;
+    }
     return await this.usersService.update(id, body);
   }
 }
